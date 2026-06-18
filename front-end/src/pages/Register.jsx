@@ -10,7 +10,7 @@ function Register(){
     async function registerUser(){
 
         const res = await axios.post(
-            "http://localhost:5000/register",
+            "https://mern-ecommerce-app-qzaz.onrender.com/register",
             {
                 name,
                 email,

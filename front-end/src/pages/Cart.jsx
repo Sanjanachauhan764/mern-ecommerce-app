@@ -6,7 +6,7 @@ function Cart(){
     const [cartItems, setCartItems] = useState([]);
 
     async function getCart(){
-        const res = await axios.get("http://localhost:5000/cart/sanjana@gmail.com");
+        const res = await axios.get("https://mern-ecommerce-app-qzaz.onrender.com/cart/sanjana@gmail.com");
         setCartItems(res.data);
     }
 
@@ -17,7 +17,7 @@ function Cart(){
     const total = cartItems.reduce((sum,item) => sum + item.price,0);
 
     async function removeItem(id){
-    await axios.delete(`http://localhost:5000/remove-cart/${id}`);
+    await axios.delete(`https://mern-ecommerce-app-qzaz.onrender.com/remove-cart/${id}`);
     getCart();
     }
 

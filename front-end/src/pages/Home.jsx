@@ -8,7 +8,7 @@ function Home({search}){
     
 
     async function getProducts(){
-        const res = await axios.get("http://localhost:5000/products");
+        const res = await axios.get("https://mern-ecommerce-app-qzaz.onrender.com/products");
         setProducts(res.data);
     }
 
@@ -18,7 +18,7 @@ function Home({search}){
 
     async function addToCart(product){
     await axios.post(
-        "http://localhost:5000/add-to-cart",
+        "https://mern-ecommerce-app-qzaz.onrender.com/add-to-cart",
         {
             userEmail: "sanjana@gmail.com",
             productId: product._id,

@@ -18,7 +18,7 @@ function Admin(){
     
     
     async function getProducts(){
-        const res = await axios.get("http://localhost:5000/products");
+        const res = await axios.get("https://mern-ecommerce-app-qzaz.onrender.com/products");
         setProducts(res.data);
     }
     useEffect(() => {
@@ -26,13 +26,13 @@ function Admin(){
     }, []);
 
     async function deleteProduct(id){
-        await axios.delete(`http://localhost:5000/delete-product/${id}`);
+        await axios.delete(`https://mern-ecommerce-app-qzaz.onrender.com/delete-product/${id}`);
         getProducts();
     }
 
     async function updateProduct(){
     await axios.put(
-        `http://localhost:5000/update-product/${editId}`,
+        `https://mern-ecommerce-app-qzaz.onrender.com/update-product/${editId}`,
         {
             title,
             price,
@@ -47,7 +47,7 @@ function Admin(){
 
     async function addProduct(){
     const res = await axios.post(
-        "http://localhost:5000/add-product",
+        "https://mern-ecommerce-app-qzaz.onrender.com/add-product",
         {
             title,
             price,
