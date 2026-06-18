@@ -1,0 +1,264 @@
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 30px;
+    background:#2c3e50;
+    color:white;
+    position:sticky;
+    top:0;
+    margin-bottom: 40px;
+}
+
+.navbar button{
+    margin-left:10px;
+    padding:8px 15px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.search-container{
+    position: relative;
+}
+
+.search-icon{
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+}
+
+.nav-search{
+    width: 200px;
+    padding: 12px 15px 12px 45px; /* left padding bada */
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    font-size: 16px;
+}
+
+.product-container{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
+}
+
+.card{
+    width:250px;
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+    text-align:center;
+}
+
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.container{
+    width: 400px;
+    margin: 60px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px solid #ddd;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.container h1{
+    margin-bottom: 20px;
+}
+
+.container input{
+    width: 90%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.container button{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.auth-container{
+    width: 400px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px solid #ddd;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    text-align: center;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.cart-container{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
+    margin-top:30px;
+}
+
+.cart-card{
+    width:300px;
+    background:white;
+    border-radius:10px;
+    padding:15px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+    text-align:center;
+}
+
+.cart-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.cart-card button{
+    background:red;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.total-price{
+    text-align:center;
+    margin-top:30px;
+    font-size:32px;
+    color:#2c3e50;
+}
+
+.admin-container{
+    display:flex;
+    gap:30px;
+    padding:30px;
+    align-items:flex-start;
+}
+
+.admin-form{
+    width:300px;
+    min-width:300px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+.admin-products{
+    flex:1;
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    align-items:flex-start;
+}
+
+.admin-products .card{
+    width:280px;
+}
+
+.admin-products .card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.no-product{
+    text-align:center;
+    margin-top:100px;
+}
+
+.no-product h2{
+    color:#2c3e50;
+}
+
+.no-product p{
+    color:gray;
+    font-size:18px;
+}
+
+
+.footer{
+    background:#2c3e50;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:40px;
+}
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f5f5f5;
+}
+
+#root{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+.main-content{
+    flex:1;
+}
+
+.page-container{
+    max-width:900px;
+    margin:50px auto;
+    padding:40px;
+    background:white;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.15);
+    text-align:center;
+}
+
+.page-container p{
+    font-size:18px;
+    line-height:1.8;
+    color:#555;
+}
+
+.page-container h1{
+    background:linear-gradient(to right,#3498db,#8e44ad);
+    background-clip:text;
+    -webkit-background-clip:text;
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+    font-size:42px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.page-container p{
+    color:#555;
+    font-size:18px;
+    line-height:1.8;
+}
+
+.contact-info{
+    margin-top:30px;
+}
+
+.contact-info p{
+    font-size:20px;
+    margin:15px 0;
+    color:#34495e;
+}
