@@ -1,17 +1,22 @@
   import { Link } from "react-router-dom";
+  import { FaUserCircle } from "react-icons/fa";
 
 
   function Navbar({ search, setSearch }) {
+
+    const userEmail = localStorage.getItem("userEmail");
   
     function logoutUser(){
       localStorage.removeItem("token");
       localStorage.removeItem("role");
+      localStorage.removeItem("userEmail");
       window.location.href = "/login";
   }
 
     return (
       <nav className="navbar">
 
+        
         <h2>🛒 E-Commerce</h2>
 
         <div className="search-container">
@@ -19,8 +24,7 @@
         <input type="text" placeholder="Search Products..." className="nav-search" value={search} onChange={(e)=>setSearch(e.target.value)}/>
         </div>
 
-
-        <div>
+        <div style={{marginTop:"20px"}}>
           <Link to="/">
             <button>Home</button>
           </Link>
@@ -44,7 +48,7 @@
           {
               localStorage.getItem("token") ? (
               <button onClick={logoutUser}>Logout</button>
-              ) : (
+            ) : (
               <>
               <Link to="/login">
               <button>Login</button>
@@ -58,7 +62,18 @@
           }
           
         </div>
-
+        {
+          localStorage.getItem("role") === "admin" ? (
+          <span className="profile-user">
+            👑 Admin
+          </span>
+          ) : (
+          <span className="profile-user">
+          <FaUserCircle size={25} />
+                {userEmail}
+          </span>
+          )
+        }
       </nav>
     );
   }

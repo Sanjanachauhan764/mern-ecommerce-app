@@ -17,12 +17,17 @@ function Register(){
                 password
             }
         );
-
-        alert(res.data.message);
-
-        setName("");
-        setEmail("");
-        setPassword("");
+        if(res.data.message === "User Registered"){
+            alert("Registration Successful");
+    
+            setName("");
+            setEmail("");
+            setPassword("");
+            window.location.href = "/login";
+        }
+        else{
+            alert(res.data.message);
+        }   
     }
 
     return (
