@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 function Cart(){
 
     const [cartItems, setCartItems] = useState([]);
+    const userEmail = localStorage.getItem("userEmail");
 
     async function getCart(){
-        const res = await axios.get("https://mern-ecommerce-app-qzaz.onrender.com/cart/sanjana@gmail.com");
+        const res = await axios.get(`https://mern-ecommerce-app-qzaz.onrender.com/cart/${userEmail}`);
         setCartItems(res.data);
     }
 

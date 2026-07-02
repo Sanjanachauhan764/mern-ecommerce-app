@@ -6,6 +6,7 @@ function Home({search}){
 
     const [products, setProducts] = useState([]);
     
+    
 
     async function getProducts(){
         const res = await axios.get("https://mern-ecommerce-app-qzaz.onrender.com/products");
@@ -17,19 +18,25 @@ function Home({search}){
     }, []);
 
     async function addToCart(product){
+    const token = localStorage.getItem("token");
+    if(!token){
+        alert("Please Login First");
+        window.location.href = "/login";
+        return;
+    }
     await axios.post(
         "https://mern-ecommerce-app-qzaz.onrender.com/add-to-cart",
         {
-            userEmail: "sanjana@gmail.com",
+            userEmail: localStorage.getItem("userEmail"),
             productId: product._id,
             title: product.title,
             price: product.price,
-            description : product.description,
+            description: product.description,
             image: product.image
         }
-    );
-    alert("Added To Cart");
-   }
+    )
+    alert(`${product.title} is added to your cart`);
+    }
 
    const filteredProducts = products.filter((product) =>
    product.title.toLowerCase().includes(search.toLowerCase())

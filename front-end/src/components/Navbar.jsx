@@ -5,11 +5,13 @@
   function Navbar({ search, setSearch }) {
 
     const userEmail = localStorage.getItem("userEmail");
+    const userName = localStorage.getItem("userName");
   
     function logoutUser(){
       localStorage.removeItem("token");
       localStorage.removeItem("role");
       localStorage.removeItem("userEmail");
+      localStorage.removeItem("userName");
       window.location.href = "/login";
   }
 
@@ -69,8 +71,7 @@
           </span>
           ) : (
           <span className="profile-user">
-          <FaUserCircle size={25} />
-                {userEmail}
+                {userName}
           </span>
           )
         }

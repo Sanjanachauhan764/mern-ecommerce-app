@@ -66,6 +66,11 @@ function Register(){
                 Register
             </button>
 
+            <p style={{marginTop:"15px"}}>
+                Already have an account?
+                <a href="/login"> Login Here</a>
+            </p>
+
         </div>
     );
 }

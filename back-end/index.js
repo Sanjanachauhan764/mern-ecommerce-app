@@ -124,16 +124,18 @@ app.post("/login", async (req, res) => {
             message: "Invalid Password"
         });
     }
+    console.log(user);
     const token = jwt.sign(
         {
-            email: user.email
+            email: user.email,
         },
         "mysecretkey"
     );
     res.json({
         message: "Login Successful",
         token : token,
-        role: user.role
+        role: user.role,
+        name : user.name
     });
 });
 
