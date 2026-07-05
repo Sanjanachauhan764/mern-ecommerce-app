@@ -5,15 +5,30 @@ import { useEffect, useState } from "react";
 function Home({search}){
 
     const [products, setProducts] = useState([]);
-    
-    
+    const [loading, setLoading] = useState(true);
 
-    async function getProducts(){
-        const res = await axios.get("https://mern-ecommerce-app-qzaz.onrender.com/products");
+    // async function getProducts(){
+    //     const res = await axios.get("https://mern-ecommerce-app-qzaz.onrender.com/products");
+    //     setProducts(res.data);
+    // }
+
+    async function getProducts() {
+    try{
+        const res = await axios.get(
+            "https://mern-ecommerce-app-qzaz.onrender.com/products"
+        );
         setProducts(res.data);
+    }
+    catch(err){
+        console.log(err);
+    }
+    finally{
+        setLoading(false);
+    }
     }
 
     useEffect(() => {
+        console.log("Home Mounted");
         getProducts();
     }, []);
 
@@ -42,6 +57,13 @@ function Home({search}){
    product.title.toLowerCase().includes(search.toLowerCase())
    );
 
+    if(loading){
+    return(
+        <div className="no-product">
+            <h2>Loading Products...</h2>
+        </div>
+    );
+    }
     return(
     <div className="product-container">
         <h1>Products</h1>
@@ -65,7 +87,6 @@ function Home({search}){
                 </div>
             )
         }
-        
     </div>
 );
 
