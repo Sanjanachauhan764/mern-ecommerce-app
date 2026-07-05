@@ -9,6 +9,7 @@ const jwt = require("jsonwebtoken");
 const User = require("./models/User");
 const Product = require("./models/Product");
 const Cart = require("./models/Cart");
+const Order = require("./models/Order");
 
 mongoose.connect("mongodb+srv://sanjana:12345@cluster0.r4uolfu.mongodb.net/E-Commerce?appName=Cluster0")
 .then(() => console.log("MongoDB Connected"))
@@ -137,6 +138,36 @@ app.post("/login", async (req, res) => {
         role: user.role,
         name : user.name
     });
+});
+
+app.post("/place-order", async (req, res) => {
+    const userEmail = req.body.userEmail;
+    const cartItems = await Cart.find({
+        userEmail: userEmail
+    });
+    const total = cartItems.reduce(
+        (sum, item) => sum + item.price,
+        0
+    );
+    const order = new Order({
+        userEmail: userEmail,
+        products: cartItems,
+        total: total
+    });
+    await order.save();
+    await Cart.deleteMany({
+        userEmail: userEmail
+    });
+    res.json({
+        message: "Order Placed Successfully"
+    });
+});
+
+app.get("/orders/:email", async (req,res) => {
+    const orders = await Order.find({
+        userEmail: req.params.email
+    });
+    res.json(orders);
 });
 
 app.listen(5000, () => {

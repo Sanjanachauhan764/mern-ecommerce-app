@@ -47,6 +47,10 @@
             <button>Admin</button>
           </Link>
 
+          <Link to="/orders">
+            <button>My Orders</button>
+          </Link>
+
           {
               localStorage.getItem("token") ? (
               <button onClick={logoutUser}>Logout</button>

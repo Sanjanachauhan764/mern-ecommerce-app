@@ -22,7 +22,17 @@ function Cart(){
     getCart();
     }
 
-    
+    async function placeOrder(){
+    const res = await axios.post(
+        "https://mern-ecommerce-app-qzaz.onrender.com/place-order",
+        {
+            userEmail: localStorage.getItem("userEmail")
+        }
+    );
+    alert(res.data.message);
+    getCart();
+    }
+
     return(
     <>
         {
@@ -45,9 +55,8 @@ function Cart(){
                                 <h3>{item.title}</h3>
                                 <p>{item.description}</p>
                                 <p>₹{item.price}</p>
-                                <button onClick={() => removeItem(item._id)}>
-                                    Remove
-                                </button>
+                                <button onClick={() => removeItem(item._id)}>Remove</button>
+                                <button onClick={placeOrder} className="place-order-btn">Place Order</button>
                             </div>
                         ))
                     }
