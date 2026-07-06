@@ -150,9 +150,12 @@ app.post("/place-order", async (req, res) => {
         0
     );
     const order = new Order({
-        userEmail: userEmail,
-        products: cartItems,
-        total: total
+    userEmail: userEmail,
+    products: cartItems,
+    total: total,
+    status: "Processing",
+    paymentMethod: "COD",
+    orderDate: new Date()
     });
     await order.save();
     await Cart.deleteMany({
