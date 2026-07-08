@@ -71,18 +71,24 @@ function Cart(){
                                 <p>{item.description}</p>
                                 <p>₹{item.price} × {item.quantity}</p>
                                 <p><strong>Total: ₹{item.price * item.quantity}</strong></p>
-                                <div
-                                    style={{
-                                        display:"flex",
-                                        justifyContent:"center",
-                                        alignItems:"center",
-                                        gap:"15px",
-                                        margin:"15px 0"
-                                    }}
-                                >
-                                <button onClick={() => decreaseQuantity(item._id)}>-</button>
-                                <h3>{item.quantity}</h3>
-                                <button onClick={() => increaseQuantity(item._id)}>+</button>
+                                <div className="quantity-box">
+                                    <button
+                                        className="qty-btn"
+                                        onClick={() => decreaseQuantity(item._id)}
+                                    >
+                                        −
+                                    </button>
+
+                                    <span className="qty-number">
+                                        {item.quantity}
+                                    </span>
+
+                                    <button
+                                        className="qty-btn"
+                                        onClick={() => increaseQuantity(item._id)}
+                                    >
+                                        +
+                                    </button>
                                 </div>
                                 <button onClick={() => removeItem(item._id)}>Remove</button>
                                 <button onClick={() => placeOrder(item)} className="place-order-btn">Place Order</button>
