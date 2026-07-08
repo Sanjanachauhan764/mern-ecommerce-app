@@ -74,8 +74,8 @@ function Home({search}){
                         <img src={product.image} alt={product.title}/>
                         <h2>{product.title}</h2>
                         <p>₹{product.price}</p>
-                        <p>{product.description}</p>
-                        <button onClick={() => addToCart(product)}>
+                       {/* <p>{product.description}</p>*/}
+                        <button onClick={() => addToCart(product)} style={{backgroundColor:"blue",color:"white",border:"none",padding:"10px",margin:"10px",borderRadius:"5px"}}>
                             Add To Cart
                         </button>
                     </div>

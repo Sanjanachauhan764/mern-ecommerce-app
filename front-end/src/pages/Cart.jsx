@@ -68,7 +68,7 @@ function Cart(){
                             <div className="cart-card" key={item._id}>
                                 <img src={item.image} alt={item.title} />
                                 <h3>{item.title}</h3>
-                                <p>{item.description}</p>
+                                {/*<p>{item.description}</p>*/}
                                 <p>₹{item.price} × {item.quantity}</p>
                                 <p><strong>Total: ₹{item.price * item.quantity}</strong></p>
                                 <div className="quantity-box">

@@ -16,7 +16,6 @@ function Admin(){
         return <h1>Access Denied</h1>;
     }
     
-    
     async function getProducts(){
         const res = await axios.get("https://mern-ecommerce-app-qzaz.onrender.com/products");
         setProducts(res.data);
@@ -41,6 +40,7 @@ function Admin(){
             category
         }
     );
+    alert("Product Updated");
     setEditId(null);
     getProducts();
     }
@@ -98,7 +98,7 @@ function Admin(){
                         <img src={product.image} alt={product.title} />
                         <h3>{product.title}</h3>
                         <p>₹{product.price}</p>
-                        <p>{product.description}</p>
+                        {/*<p>{product.description}</p>*/}
                         <button onClick={() => { setEditId(product._id); setTitle(product.title); setPrice(product.price); 
                         setImage(product.image); setDescription(product.description);
                         setCategory(product.category);}} style={{backgroundColor:"green"}}>Edit</button>
