@@ -182,6 +182,29 @@ app.get("/orders/:email", async (req,res) => {
     res.json(orders);
 });
 
+app.put("/increase-quantity/:id", async (req, res) => {
+    await Cart.findByIdAndUpdate(
+        req.params.id,
+        {
+            $inc: { quantity: 1 }
+        }
+    );
+    res.json({
+        message: "Quantity Increased"
+    });
+});
+
+app.put("/decrease-quantity/:id", async (req, res) => {
+    const item = await Cart.findById(req.params.id);
+    if(item.quantity > 1){
+        item.quantity -= 1;
+        await item.save();
+    }
+    res.json({
+        message: "Quantity Decreased"
+    });
+});
+
 app.listen(5000, () => {
     console.log("Server Running");
 });
