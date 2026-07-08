@@ -15,7 +15,7 @@ function Cart(){
         getCart();
     }, []);
 
-    const total = cartItems.reduce((sum,item) => sum + item.price,0);
+    const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity),0);
 
     async function removeItem(id){
     await axios.delete(`https://mern-ecommerce-app-qzaz.onrender.com/remove-cart/${id}`);
@@ -31,6 +31,20 @@ function Cart(){
         }
     );
     alert(res.data.message);
+    getCart();
+    }
+
+    async function increaseQuantity(id){
+    await axios.put(
+        `https://mern-ecommerce-app-qzaz.onrender.com/increase-quantity/${id}`
+    );
+    getCart();
+    }
+
+    async function decreaseQuantity(id){
+    await axios.put(
+        `https://mern-ecommerce-app-qzaz.onrender.com/decrease-quantity/${id}`
+    );
     getCart();
     }
 
@@ -55,7 +69,21 @@ function Cart(){
                                 <img src={item.image} alt={item.title} />
                                 <h3>{item.title}</h3>
                                 <p>{item.description}</p>
-                                <p>₹{item.price}</p>
+                                <p>₹{item.price} × {item.quantity}</p>
+                                <p><strong>Total: ₹{item.price * item.quantity}</strong></p>
+                                <div
+                                    style={{
+                                        display:"flex",
+                                        justifyContent:"center",
+                                        alignItems:"center",
+                                        gap:"15px",
+                                        margin:"15px 0"
+                                    }}
+                                >
+                                <button onClick={() => decreaseQuantity(item._id)}>-</button>
+                                <h3>{item.quantity}</h3>
+                                <button onClick={() => increaseQuantity(item._id)}>+</button>
+                                </div>
                                 <button onClick={() => removeItem(item._id)}>Remove</button>
                                 <button onClick={() => placeOrder(item)} className="place-order-btn">Place Order</button>
                             </div>

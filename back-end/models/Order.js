@@ -15,6 +15,10 @@ const orderSchema = new mongoose.Schema({
     orderDate: {
         type: Date,
         default: Date.now
+    },
+    quantity: {
+        type: Number,
+        default: 1
     }
 });
 

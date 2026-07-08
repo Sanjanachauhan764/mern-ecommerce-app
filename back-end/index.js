@@ -35,18 +35,31 @@ app.get("/products", async (req, res) => {
 });
 
 app.post("/add-to-cart", async (req, res) => {
+    const existingItem = await Cart.findOne({
+        userEmail: req.body.userEmail,
+        productId: req.body.productId
+    });
+    if(existingItem){
+        existingItem.quantity += 1;
+        await existingItem.save();
+        return res.json({
+            message: "Quantity Updated"
+        })
+    }
     const cartItem = new Cart({
         userEmail: req.body.userEmail,
         productId: req.body.productId,
         title: req.body.title,
         price: req.body.price,
-        description : req.body.description,
-        image: req.body.image
+        description: req.body.description,
+        image: req.body.image,
+        quantity: 1
     });
     await cartItem.save();
     res.json({
         message: "Added To Cart"
     });
+
 });
 
 app.get("/cart/:email", async (req, res) => {
@@ -156,7 +169,7 @@ app.post("/place-order", async (req, res) => {
 
     await order.save();
     await Cart.findByIdAndDelete(req.body.cartId);
-    
+
     res.json({
         message: "Order Placed Successfully"
     });
