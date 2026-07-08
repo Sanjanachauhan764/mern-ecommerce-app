@@ -156,7 +156,7 @@ app.post("/login", async (req, res) => {
 app.post("/place-order", async (req, res) => {
     const userEmail = req.body.userEmail;
     const cartItem = await Cart.findById(req.body.cartId);
-    const total = cartItem.price;
+    const total = cartItem.price * cartItem.quantity;
 
     const order = new Order({
     userEmail: userEmail,

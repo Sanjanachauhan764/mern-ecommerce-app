@@ -50,7 +50,12 @@ function Orders(){
                                     />
                                     <div>
                                         <h4>{product.title}</h4>
-                                        <p>₹{product.price}</p>
+                                        <p>₹{product.price} × {product.quantity}</p>
+                                        <p>
+                                            <strong>
+                                                Total: ₹{product.price * product.quantity}
+                                            </strong>
+                                        </p>
                                     </div>
                                 </div>
                             ))
