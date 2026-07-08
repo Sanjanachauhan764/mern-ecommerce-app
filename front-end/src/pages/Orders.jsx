@@ -18,41 +18,35 @@ function Orders(){
 
     return(
         <div style={{padding:"20px"}}>
-
             <h1>My Orders</h1>
-
             {
                 orders.length === 0 ? (
                     <h2>No Orders Found</h2>
                 ) : (
                     orders.map((order) => (
-                        <div key={order._id} style={{background:"white",padding:"20px",marginBottom:"20px",borderRadius:"10px",boxShadow:"0 0 10px rgba(0,0,0,0.2)"}}>
-                            <h3>Order ID: {order._id}</h3>
-                            <p>Date:
-                                {
-                                    order.orderDate
-                                    ? new Date(order.orderDate).toLocaleDateString()
-                                    : "No Date"
-                                }
-                            </p>
-                            <p>Status: 
-                                <span style={{color:"orange"}}>
-                                    {order.status}
-                                </span>
-                            </p>
-                            <p> Payment: {order.paymentMethod} </p>
-                            <h3>Total: ₹{order.total}</h3>
+                        <div className="order-card" key={order._id}>
+                            <div className="order-header">
+                                <h3>
+                                    Order ID: {order._id.slice(-6)}
+                                </h3>
+                            <span className="status">
+                                {order.status}
+                            </span>
+                        </div>
+                        <p className="order-date">
+                            Placed On:
                             {
-                                order.products.map((product) => (
-                                    <div key={product._id}
-                                        style={{display:"flex",alignItems:"center",gap:"15px",marginBottom:"15px"}}
-                                    >
+                                order.orderDate
+                                ? new Date(order.orderDate).toLocaleDateString()
+                                : "No Date"
+                            }
+                        </p>
+                        {
+                            order.products.map((product) => (
+                                <div className="order-product" key={product._id}>
                                     <img
                                         src={product.image}
                                         alt={product.title}
-                                        width="80"
-                                        height="80"
-                                        style={{borderRadius:"8px",objectFit:"cover"}}
                                     />
                                     <div>
                                         <h4>{product.title}</h4>
@@ -60,8 +54,17 @@ function Orders(){
                                     </div>
                                 </div>
                             ))
-                            }
+                        }
+                        <div className="order-footer">
+                            <div>
+                                <h3>Total: ₹{order.total}</h3>
+                                <p>Payment: {order.paymentMethod}</p>
+                            </div>
+                            <button className="details-btn">
+                                View Details
+                            </button>
                         </div>
+                    </div>
                     ))
                 )
             }

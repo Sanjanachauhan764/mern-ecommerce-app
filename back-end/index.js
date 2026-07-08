@@ -142,25 +142,21 @@ app.post("/login", async (req, res) => {
 
 app.post("/place-order", async (req, res) => {
     const userEmail = req.body.userEmail;
-    const cartItems = await Cart.find({
-        userEmail: userEmail
-    });
-    const total = cartItems.reduce(
-        (sum, item) => sum + item.price,
-        0
-    );
+    const cartItem = await Cart.findById(req.body.cartId);
+    const total = cartItem.price;
+
     const order = new Order({
     userEmail: userEmail,
-    products: cartItems,
+    products: [cartItem],
     total: total,
     status: "Processing",
     paymentMethod: "COD",
     orderDate: new Date()
     });
+
     await order.save();
-    await Cart.deleteMany({
-        userEmail: userEmail
-    });
+    await Cart.findByIdAndDelete(req.body.cartId);
+    
     res.json({
         message: "Order Placed Successfully"
     });
