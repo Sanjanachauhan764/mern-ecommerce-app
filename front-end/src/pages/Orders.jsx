@@ -18,7 +18,7 @@ function Orders(){
 
     return(
         <div style={{padding:"20px"}}>
-            <h1>My Orders</h1>
+            <h1>Orders</h1>
             {
                 orders.length === 0 ? (
                     <h2>No Orders Found</h2>

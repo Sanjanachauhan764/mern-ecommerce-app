@@ -35,17 +35,15 @@ import axios from "axios";
 
     return (
       <nav className="navbar">
-
+        <div className="nav-left">
         <h2>🛒 E-Commerce</h2>
-
         <div className="search-container">
           <span className="search-icon">🔍</span>
         <input type="text" placeholder="Search Products..." className="nav-search" value={search} onChange={(e)=>setSearch(e.target.value)}/>
         </div>
-
-        <div style={{marginTop:"20px"}} className="nav-links">
+        <div>
         <select className="category-dropdown" value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
-              <option value="All">Categories</option>
+              <option value="All" style={{color:"white"}}>Categories</option>
               {
                   categories.map((category) => (
                       <option key={category} value={category}>
@@ -54,13 +52,16 @@ import axios from "axios";
                   ))
               }
         </select>
-
+        </div>
+        </div>
+        
+        <div className="nav-center">
           <Link to="/">
             <button>Home</button>
           </Link>
 
           <Link to="/cart">
-            <button>🛒</button>
+            <button>Cart</button>
           </Link>
 
           <Link to="/about">
@@ -78,8 +79,21 @@ import axios from "axios";
           <Link to="/orders">
             <button>My Orders</button>
           </Link>
+          </div>
 
+          <div className="nav-right">
           {
+            localStorage.getItem("role") === "admin" ? (
+            <span className="profile-user">
+              👑 Admin
+            </span>
+            ) : (
+            <span className="profile-user">
+                  {userName}
+            </span>
+            )
+          }
+           {
               localStorage.getItem("token") ? (
               <button onClick={logoutUser}>Logout</button>
             ) : (
@@ -94,19 +108,7 @@ import axios from "axios";
               </>
             )
           }
-          
-        </div>
-        {
-          localStorage.getItem("role") === "admin" ? (
-          <span className="profile-user">
-            👑 Admin
-          </span>
-          ) : (
-          <span className="profile-user">
-                {userName}
-          </span>
-          )
-        }
+          </div>
       </nav>
     );
   }
