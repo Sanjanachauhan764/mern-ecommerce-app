@@ -77,7 +77,7 @@ import axios from "axios";
           </Link>
 
           <Link to="/orders">
-            <button>My Orders</button>
+            <button>Orders</button>
           </Link>
           </div>
 

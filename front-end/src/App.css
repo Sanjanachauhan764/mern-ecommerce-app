@@ -36,7 +36,7 @@
     position:sticky;
     top:0;
     margin-bottom:40px;
-    gap:20px;
+    gap:10px;
 }
 
 .nav-left{
@@ -48,7 +48,7 @@
 .nav-center{
     display:flex;
     align-items:center;
-    gap:2px;
+    gap:0px;
     flex:1;
     justify-content:center;
 }
@@ -92,7 +92,7 @@
 }
 
 .nav-search{
-    width: 220px;
+    width: 200px;
     height: 10px;
     padding: 12px 15px 12px 45px; /* left padding bada */
     border: none;
@@ -338,14 +338,14 @@ body{
     color:#34495e;
 }
 
-/* .profile-user{
+.profile-user{
     color:white;
     font-weight:bold;
     display:flex;
     align-items:center;
     gap:8px;
     font-size:18px;
-} */
+}
 
 @media (max-width: 768px){
 
