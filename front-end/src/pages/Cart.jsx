@@ -61,7 +61,7 @@ function Cart(){
             ) : (
 
                 <div className="cart-container">
-                    <h1>My Cart</h1>
+                    {/*<h1>My Cart</h1>*/}
 
                     {
                         cartItems.map((item) => (

@@ -1,8 +1,26 @@
-  import { Link } from "react-router-dom";
-  import { FaUserCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 
-  function Navbar({ search, setSearch }) {
+  function Navbar({ search, setSearch, selectedCategory, setSelectedCategory }) {
+
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+    async function getCategories() {
+        const res = await axios.get(
+            "https://mern-ecommerce-app-qzaz.onrender.com/products"
+        );
+        const uniqueCategories = [
+            "All",
+            ...new Set(res.data.map(product => product.category))
+        ];
+        setCategories(uniqueCategories);
+    }
+    getCategories();
+    }, []);
 
     const userEmail = localStorage.getItem("userEmail");
     const userName = localStorage.getItem("userName");
@@ -18,7 +36,6 @@
     return (
       <nav className="navbar">
 
-        
         <h2>🛒 E-Commerce</h2>
 
         <div className="search-container">
@@ -26,13 +43,24 @@
         <input type="text" placeholder="Search Products..." className="nav-search" value={search} onChange={(e)=>setSearch(e.target.value)}/>
         </div>
 
-        <div style={{marginTop:"20px"}}>
+        <div style={{marginTop:"20px"}} className="nav-links">
+        <select className="category-dropdown" value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+              <option value="All">Categories</option>
+              {
+                  categories.map((category) => (
+                      <option key={category} value={category}>
+                          {category}
+                      </option>
+                  ))
+              }
+        </select>
+
           <Link to="/">
             <button>Home</button>
           </Link>
 
           <Link to="/cart">
-            <button>Cart</button>
+            <button>🛒</button>
           </Link>
 
           <Link to="/about">

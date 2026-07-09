@@ -12,10 +12,23 @@
 
 .navbar button{
     margin-left:10px;
-    padding:8px 15px;
+    padding:10px 18px;
     border:none;
-    border-radius:6px;
+    border-radius:8px;
     cursor:pointer;
+    background:transparent;
+    color:white;
+    font-size:16px;
+    transition:.3s;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+}
+
+.navbar button:hover{
+    background:#3b4f66;
 }
 
 .search-container{
@@ -469,4 +482,18 @@ body{
     font-size:18px;
     font-weight:bold;
     color:#333;
+}
+
+.category-box{
+    display:flex;
+    flex-direction:column;
+    background-color: transparent;
+    color:white;
+    gap:4px;
+}
+
+.category-box select{
+    width:100px;
+    padding:8px;
+    border-radius:6px;
 }

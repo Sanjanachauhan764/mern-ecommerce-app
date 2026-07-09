@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 
-function Home({search}){
+function Home({search, selectedCategory }){
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -53,9 +53,14 @@ function Home({search}){
     alert(`${product.title} is added to your cart`);
     }
 
-   const filteredProducts = products.filter((product) =>
-   product.title.toLowerCase().includes(search.toLowerCase())
-   );
+   const filteredProducts = products.filter((product) => {
+    const searchMatch =
+        product.title.toLowerCase().includes(search.toLowerCase());
+    const categoryMatch =
+        selectedCategory === "All" ||
+        product.category === selectedCategory;
+    return searchMatch && categoryMatch;
+    });
 
     if(loading){
     return(
@@ -66,7 +71,7 @@ function Home({search}){
     }
     return(
     <div className="product-container">
-        <h1>Products</h1>
+        {/*<h1>Products</h1>*/}
         {
             filteredProducts.length > 0 ? (
                 filteredProducts.map((product) => (

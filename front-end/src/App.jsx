@@ -16,8 +16,9 @@ import Orders from "./pages/Orders";
 function AppContent() {
 
   const [search, setSearch] = useState("");
-  const location = useLocation();
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
+  const location = useLocation();
   const hideLayout =
     location.pathname === "/login" ||
     location.pathname === "/register";
@@ -25,11 +26,12 @@ function AppContent() {
   return (
     <>
       {!hideLayout && (
-        <Navbar search={search} setSearch={setSearch} />
+        <Navbar search={search} setSearch={setSearch} selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}/>
       )}
       <div className="main-content">
       <Routes>
-        <Route path="/" element={<Home search={search} />} />
+        <Route path="/" element={<Home search={search} selectedCategory={selectedCategory} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart />} />
